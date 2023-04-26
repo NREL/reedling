@@ -1,12 +1,17 @@
 Package: reedling
-Title: What the Package Does (One Line, Title Case)
+Title: ReEDS results in R
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Brian", "Sergi", , "bsergi@nrel.gov", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3453-9878"))
+Description: An R package for processing and plotting ReEDS data.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports: 
+  data.table (>= 1.14.2),
+  plyr (>= 1.8.5),
+  readxl,
+  stringr (>= 1.5.0),
+  sf (>= 1.0-5)
