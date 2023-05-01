@@ -2,16 +2,23 @@
 % Please edit documentation in R/load.R
 \name{list_outputs}
 \alias{list_outputs}
-\title{TODO: complete description here}
+\title{List output files}
 \usage{
-list_outputs(runs, runval = NULL, folder = "outputs", bokeh = F)
+list_outputs(runs, runval = NULL, folder = "outputs")
 }
 \arguments{
-\item{runs}{Data Table of runs to list outputs.}
-}
-\value{
-Data Table with results by run name
+\item{runs}{data table of runs to list outputs;}
+
+\item{runval}{optional parameter to specify name of specific run in runs to look at}
+
+\item{folder}{optional parameter to specify folder to look for files (default: outputs)}
 }
 \description{
-TODO: complete description here
+Prints a list of files in a folder of runs. Defaults to looking at the outputs folder of the first run specified.
+}
+\examples{
+list_outputs(runs)
+list_outputs(runs, runval="runname")
+list_outputs(runs, folder="inputs_case")
+
 }

@@ -2,22 +2,32 @@
 % Please edit documentation in R/load.R
 \name{load_run_data}
 \alias{load_run_data}
-\title{Loads outputs from ReEDS runs; for outputs with generator techs also performs some formatting}
+\title{Load outputs from ReEDS runs}
 \usage{
 load_run_data(runs, filename, folder = "outputs", newcolname = NULL)
 }
 \arguments{
-\item{runs}{Data Table of runs to load outputs.}
+\item{runs}{data table of runs to load outputs}
 
-\item{output_file}{Filename of output to load.}
+\item{filename}{filename to load}
+
+\item{folder}{optional parameter to specify folder where filename resides (default: outputs)}
+
+\item{newcolname}{optional parameter to rename value column}
 }
 \value{
-Data Table with results by run name
+data table with results by run name
 }
 \description{
-Loads outputs from ReEDS runs; for outputs with generator techs also performs some formatting
+Function to collect csv data from a set of ReEDS runs. Defaults to data in the "outputs" folder of the ReEDS runs,
+but can also be used for data stored in inputs_case.
 }
 \examples{
-scens <- list_runs("path/to/ReEDS-2.0/runs", "20230416")
-scens <- list_runs("path/to/ReEDS-2.0/runs", "20230416|20230422")
+cap <- load_run_data(runs, "cap.csv")
+
+# newcolname can be used to rename a column with "Val" in it
+cap <- load_run_data(runs, "cap.csv", newcolname="cap_MW")
+
+# data from other folders can also be extracted
+hierarchy <- load_run_data(runs, "hierarchy.csv", folder="inputs_case")
 }

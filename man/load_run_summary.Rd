@@ -2,27 +2,38 @@
 % Please edit documentation in R/load.R
 \name{load_run_summary}
 \alias{load_run_summary}
-\title{Get ReEDS runs}
+\title{Summarize ReEDS runs}
 \usage{
-load_run_summary(path, prefix = "")
+load_run_summary(path, batch = "")
 }
 \arguments{
-\item{path}{Path to a set of ReEDS runs.}
+\item{path}{Path to a set of ReEDS runs}
 
-\item{prefix}{Optional prefix to filter runs; can be specified as a regex pattern.}
+\item{batch}{optional prefix to filter runs; can be specified as a regex pattern}
 }
 \value{
-Data Table of ReEDS scenarios and their paths, or NULL if no scenarios are found.
+data table of ReEDS scenarios and their paths
 }
 \description{
-Function to discover a set of ReEDS run in a given run folder, with the option to subset to runs that match
+Function to summarize metadata on set of ReEDS run in a given run folder, with the option to subset to runs that match
 a specified batch prefix. The prefix can be specified as a regex string if runs from multiple batches
-are of interest. The function collects information on the full path to the run, the runtime, the last ReEDS step
-that successfully completed, and whether there are files in the 'outputs' folder of each run.
+are of interest.
+}
+\details{
+The function returns a data table with the following information on the runs:
+\itemize{
+\item run name (dropping any batch prefix if supplied)
+\item batch name (if supplied)
+\item whether files were detected in the 'outputs' folder
+\item the last ReEDS step that completed, as listed in meta.csv
+\item the run time, as listed in meta.csv
+\item full path to the run
+}
 }
 \examples{
-runs <- list_runs("path/to/ReEDS-2.0/runs", "20230416")
+runs <- load_run_summary("path/to/ReEDS-2.0/runs", "20230416")
 
-# runs from multiple batch names can be matched by joining prefixes with the '|' operator
-runs <- list_runs("path/to/ReEDS-2.0/runs", "20230416|20230422")
+# runs from multiple batches can be matched by using regex expressions
+runs <- load_run_summary("path/to/ReEDS-2.0/runs", "20230416|20230422")
+
 }

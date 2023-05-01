@@ -1,3 +1,5 @@
+## format.R ####
+
 #' Load tech mapping
 #'
 #' Load mapping for generator techs. Defaults to taking bokehpivot mapping in "tech_map.csv" from a specified ReEDS folder,
