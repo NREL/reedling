@@ -4,14 +4,14 @@
 \alias{list_outputs}
 \title{List output files}
 \usage{
-list_outputs(runs, runval = NULL, folder = "outputs")
+list_outputs(runs, folder = "outputs", runval = NULL, keyword = NULL)
 }
 \arguments{
-\item{runs}{data table of runs to list outputs;}
-
-\item{runval}{optional parameter to specify name of specific run in runs to look at}
+\item{runs}{datatable of runs to list outputs, generated from run_summary()}
 
 \item{folder}{optional parameter to specify folder to look for files (default: outputs)}
+
+\item{runval}{optional parameter to specify name of specific run in runs to look at}
 }
 \description{
 Prints a list of files in a folder of runs. Defaults to looking at the outputs folder of the first run specified.

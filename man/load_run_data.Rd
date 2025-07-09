@@ -4,29 +4,24 @@
 \alias{load_run_data}
 \title{Load outputs from ReEDS runs}
 \usage{
-load_run_data(runs, filename, folder = "outputs", newcolname = NULL)
+load_run_data(runs, filename, folder = "outputs", header = T)
 }
 \arguments{
-\item{runs}{data table of runs to load outputs}
+\item{runs}{datatable of runs to load outputs, generated from run_summary()}
 
 \item{filename}{filename to load}
 
 \item{folder}{optional parameter to specify folder where filename resides (default: outputs)}
-
-\item{newcolname}{optional parameter to rename value column}
 }
 \value{
 data table with results by run name
 }
 \description{
-Function to collect csv data from a set of ReEDS runs. Defaults to data in the "outputs" folder of the ReEDS runs,
-but can also be used for data stored in inputs_case.
+Collect csv output data from a set of ReEDS runs. Defaults to data in the "outputs" folder of the ReEDS runs,
+but can also be used for data stored in "inputs_case" or other ReEDS run folders.
 }
 \examples{
-cap <- load_run_data(runs, "cap.csv")
-
-# newcolname can be used to rename a column with "Val" in it
-cap <- load_run_data(runs, "cap.csv", newcolname="cap_MW")
+cap <- load_run_d ata(runs, "cap.csv")
 
 # data from other folders can also be extracted
 hierarchy <- load_run_data(runs, "hierarchy.csv", folder="inputs_case")

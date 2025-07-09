@@ -2,21 +2,27 @@
 % Please edit documentation in R/format.R
 \name{set_tech_map}
 \alias{set_tech_map}
-\title{Load tech mapping}
+\title{Set tech map}
 \usage{
-set_tech_map(path = NULL, reeds_default = T, filename = "tech_map.csv")
+set_tech_map(path, filename = "tech_map.csv", custom = F)
 }
 \arguments{
-\item{path}{path to ReEDS repository or a directory with a custom tech mapping}
+\item{path}{path to ReEDS repository or a directory with a custom tech mapping file}
 
-\item{reeds_default}{Boolean variable indicating whether to use the ReEDS default tech mapping in bokehpivot (defaults to True)}
+\item{filename}{typically "tech_map.csv" but can optionally be specified as any custom file (default = "tech_map.csv")}
 
-\item{filename}{optional parameter for specifying filename of custome tech mapping}
+\item{custom}{flag indicating whether to use a custom tech mapping or the ReEDS default in bokehpivot (default = FALSE)}
 }
 \value{
 dataframe of tech categories
 }
 \description{
-Load mapping for generator techs. Defaults to taking bokehpivot mapping in "tech_map.csv" from a specified ReEDS folder,
-but can also be used to load any custom mapping.
+Set the mappingfile for generator techs, which are used to aggregate ReEDS generator techs into fewer categories.
+Defaults to taking bokehpivot mapping in "tech_map.csv" when passed a path to a ReEDS repo,
+but can also be used to load any custom mapping file.
+}
+\examples{
+tech_map <- set_tech_map("path/to/ReEDS-2.0")
+tech_map <- set_tech_map("path/to/custommap", custom=T, file="custom_tech_map.csv")
+
 }

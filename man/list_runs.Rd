@@ -4,15 +4,18 @@
 \alias{list_runs}
 \title{List ReEDS runs}
 \usage{
-list_runs(path)
+list_runs(path, batch = NULL)
 }
 \arguments{
-\item{path}{Path to a set of ReEDS runs}
+\item{path}{path to a set of ReEDS runs}
+
+\item{batch}{optional prefix to filter runs; can be specified as a regex pattern}
 }
 \description{
-Function to discover a set of ReEDS run in a given run folder.
+Prints the names of any ReEDS runs in a given run folder. A batch name
+can also be specified to filter to select runs.
 }
 \examples{
-runs <- list_runs("path/to/ReEDS-2.0/runs")
-
+list_runs("path/to/ReEDS-2.0/runs")
+list_runs("path/to/ReEDS-2.0/runs", "20241129_testrun")
 }

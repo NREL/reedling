@@ -132,3 +132,80 @@ plot_map_panel <- function(df, col, baseval, compval, techval, var, legendname, 
 
 }
 
+
+## TODO: complete and test this
+# rev_points should be a spatial dataframe
+supply_curve_map <- function(rev_points, plot_col,  plot_title="", leg_title="",
+                             scale=1, bins=c(), use_log=F, custom_themes=NA, point_size=0.1, key_size=1){
+
+  print("Formatting data")
+  # print(sprintf("point size %f", point_size))
+  df <- data.frame(st_drop_geometry(rev_points))
+  col_vals <- df[,plot_col]
+
+  # scale
+  rev_points$col <- col_vals / scale
+
+  # adjust for data.tables?
+  if(use_log){
+    print("Using log scale")
+    rev_points$col <- log(rev_points$col)
+  }
+
+  # bins
+  if(length(bins) > 0 ){
+    print("Binning data")
+
+    if (bins[1] > min(rev_points$col)){
+      bins <- c(floor(min(rev_points$col)), bins)
+    }
+
+    if (bins[length(bins)] < max(rev_points$col)){
+      bins <- c(bins, ceiling(max(rev_points$col)))
+    }
+
+    rev_points$cut <- cut(rev_points$col, breaks=bins, right=F)
+  }
+  print("Plotting map")
+  p_out <- ggplot() +
+    geom_sf(data=ba_shp, mapping=aes(), lwd=0.5) +
+    geom_sf(data=st_shp, mapping=aes(), fill=NA, lwd=2, color="black") +
+    theme_void() +
+    theme(plot.title=element_text(hjust=0.5),
+          legend.position = c(0.15, 0.1))
+
+
+  if (leg_title==""){
+    leg_title <- plot_col
+  }
+  if (length(bins) > 0 ){
+    p_out <- p_out +
+      geom_sf(data=rev_points, mapping=aes(color=cut), size=point_size, shape=15) +
+      scale_color_viridis_d(leg_title) +
+      guides(color=guide_legend(title.position = "top",
+                                override.aes = list(size=2.5),
+                                byrow=T, # needed to adjust horizontal spacing
+                                keywidth=0.1,
+                                keyheight=0.1)) +
+      theme(legend.spacing.y = unit(0, 'cm'))
+
+  } else {
+    p_out <- p_out +
+      geom_sf(data=rev_points, mapping=aes(color=col), size=point_size, shape=15) +
+      scale_color_viridis_c(leg_title) +
+      guides(color=guide_colorbar(title.position = "top",
+                                  direction="horizontal"))
+  }
+
+  if (sum(!is.na(custom_themes)) > 0) {
+    print("Adding custom themes")
+    p_out <- p_out + custom_themes
+  }
+
+  if (plot_title!=""){
+    p_out <- p_out + ggtitle(plot_title)
+  }
+
+  return(p_out)
+
+}

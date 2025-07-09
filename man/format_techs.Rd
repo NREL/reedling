@@ -4,18 +4,31 @@
 \alias{format_techs}
 \title{Format techs}
 \usage{
-format_techs(df, mapping, col_from = "raw", col_to = "display")
+format_techs(
+  df,
+  mapping,
+  tech_colors = NULL,
+  tech_col = "i",
+  col_from = "raw",
+  col_to = "display"
+)
 }
 \arguments{
-\item{path}{path to ReEDS repository or a directory with a custom tech mapping}
+\item{df}{data table with generator technologies to map in a column specified by \code{tech_col}}
 
-\item{reeds_default}{Boolean variable indicating whether to use the ReEDS default tech mapping in bokehpivot (defaults to True)}
+\item{mapping}{data table with mapping of old to new techs (see \code{set_tech_map})}
 
-\item{filename}{optional parameter for specifying filename of custome tech mapping}
+\item{tech_colors}{optional named vector of techs with colors in order for plotting; used to set factor levels for new tech (see \code{set_tech_style})}
+
+\item{tech_col}{column from \code{df} with tech names (default = \code{i})}
+
+\item{col_from}{column from \code{mapping} with old tech names (default = \code{raw})}
+
+\item{col_to}{column from \code{mapping} with new tech names (default = \code{display})`)}
 }
 \value{
 Data Table of tech categories
 }
 \description{
-Recategorizes generator techs based on mapping.
+Recategorizes data by generator techs based on a tech mapping file. Outputs the same data with a new column named \code{tech} that includes the new mapping.
 }
