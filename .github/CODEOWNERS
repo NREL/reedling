@@ -1,0 +1,4 @@
+# This file tells GitHub who must approve changes to specific files or directories.
+
+# Require @bsergi to approve any changes to the main branch
+/main @bsergi
