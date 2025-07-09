@@ -20,3 +20,10 @@ Note the other package requirements in the `NAMESPACE` file.
 
 Under development -- check back later!
 
+<!-- reedling picture -->
+<p align="center">
+  <img src="man/figures/reedling.jpg" alt="In Wingspan this bird is only worth two points but can be a powerful egg layer." width="600"/> 
+</p>
+<p align="center">
+A bearded reedling in flight <a href="https://www.flickr.com/photos/sdaly/43582775360/in/photostream/" target="_blank">(photo credit)</a>.
+</p>
